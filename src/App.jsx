@@ -10,7 +10,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 // ══════════════════════════════════════════════════════════════════════════════
 
 // Clé ORS gratuite — créez la vôtre sur https://openrouteservice.org/dev/#/signup
-const ORS_API_KEY = "5b3ce3597851110001cf6248a82891fb8b2f45b0b8f1e8f2c4f3e7f0";
+const ORS_API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjkzNjRjMjFmYmI5MTQ3NTRiOWI0YmExYmMxZDI3ZDNlIiwiaCI6Im11cm11cjY0In0=";
 
 const DEFAULT_NOM   = "Mathieu COURNILLE";
 const DEFAULT_EMAIL = "sandrine.lecorgne@83095.notaires.fr"; // conservé pour usage futur
