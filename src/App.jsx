@@ -170,18 +170,24 @@ async function buildPDF(note) {
 
   // ── En-tête page 1 ─────────────────────────────────────────────────────────
   doc.setFillColor(27, 42, 74);
-  doc.rect(0, 0, PW, 52, "F");
-  doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.setTextColor(255, 255, 255);
-  doc.text("NOTE DE FRAIS", ML, 20);
+  doc.rect(0, 0, PW, 58, "F");
+
+  // Titre
+  doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(255, 255, 255);
+  doc.text("Note de frais - Mathieu COURNILLE", ML, 18);
+
+  // Date en format français
+  const dateFR = note.date.split("-").reverse().join("/");
   doc.setFontSize(11); doc.setFont("helvetica", "normal"); doc.setTextColor(200, 210, 230);
-  doc.text(note.nom, ML, 30);
-  doc.text(`${note.date}  ·  ${note.depart} → ${note.destination}`, ML, 37);
-  if (note.motif) doc.text(`Motif : ${note.motif}`, ML, 44);
-  doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(150, 200, 190);
-  doc.text("TOTAL À REMBOURSER", PW - MR, 26, { align: "right" });
-  doc.setFontSize(18); doc.setTextColor(0, 201, 167);
-  doc.text(fmt(note.grandTotal), PW - MR, 36, { align: "right" });
-  y = 62;
+  doc.text(`Date : ${dateFR}`, ML, 30);
+
+  // Motif
+  if (note.motif) doc.text(`Motif : ${note.motif}`, ML, 40);
+
+  // Trajet avec double flèche aller-retour
+  doc.text(`Trajet : ${note.depart} \u21c4 ${note.destination}`, ML, 50);
+
+  y = 68;
 
   // ── Tableau de détail ──────────────────────────────────────────────────────
   const lignes = [
@@ -665,7 +671,7 @@ function NewNote({ onSaved, onCancel }) {
   const [date,        setDate]        = useState(new Date().toISOString().split("T")[0]);
   const [nom,         setNom]         = useState(DEFAULT_NOM);
   const [motif,       setMotif]       = useState("");
-  const [depart,      setDepart]      = useState("");
+  const [depart,      setDepart]      = useState("Saint-Maximin-la-Sainte-Baume");
   const [destination, setDestination] = useState("");
   const [cv,          setCv]          = useState("5");
   const [km,          setKm]          = useState("");
